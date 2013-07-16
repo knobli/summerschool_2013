@@ -3,6 +3,8 @@
 */.settings/*
 */.classpath
 */.project
+*/project.properties
+*/gen/*
 .idea/
 *.iml
 *.class
