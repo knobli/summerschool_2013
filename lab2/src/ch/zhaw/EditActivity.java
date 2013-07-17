@@ -52,7 +52,7 @@ public class EditActivity extends Activity {
 		        valueMap.put(R.id.state, stateField.getText().toString());
 		        valueMap.put(R.id.phone, phoneField.getText().toString());
 		        
-				Intent intent = new Intent();
+				Intent intent = new Intent(EditActivity.this,MyActivity.class);
 				for( Entry<Integer, String> value : valueMap.entrySet() ){
 					intent.putExtra(value.getKey().toString(), value.getValue());
 				}
