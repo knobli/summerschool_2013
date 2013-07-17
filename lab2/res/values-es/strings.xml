@@ -6,6 +6,8 @@
     <string name="city">Ciudad</string>
     <string name="state">Departemento</string>
     <string name="phone">Telefono</string>
-    
+
+    <string name="cancelButton">Cancelar</string>
+    <string name="saveButton">Guardar</string>   
     <string name="editButton">Editar</string>
 </resources>

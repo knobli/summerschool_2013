@@ -7,7 +7,15 @@
     <string name="state">State</string>
     <string name="phone">Phone</string>
     
+    <string name="hint_name">Enter name</string>
+    <string name="hint_address">Enter address</string>
+    <string name="hint_city">Enter city</string>
+    <string name="hint_state">Enter state</string>
+    <string name="hint_phone">Enter phone</string>
+    
     <string name="editButton">Edit</string>
+   	<string name="cancelButton">Cancel</string>
+    <string name="saveButton">Save</string>
     
     <string name="val_name">Raffael Santschi</string>
     <string name="val_address">1 Campus Dr</string>

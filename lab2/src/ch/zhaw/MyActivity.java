@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MyActivity extends Activity
@@ -32,10 +33,19 @@ public class MyActivity extends Activity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	// TODO Auto-generated method stub
     	super.onActivityResult(requestCode, resultCode, data);
-    	String msg = "blblllala";
+    	String msg = "Nothing updated";
     	if(requestCode == REQUEST_TEXT){
     		if(resultCode == Activity.RESULT_OK){
-    			msg = data.getExtras().getString("balbal");
+    			Bundle bundle = data.getExtras();
+    			if(bundle == null){
+    				msg = "An error appears!";
+    			} else {
+	    			for(String key : bundle.keySet()){
+	    				String value = bundle.getString(key);
+	    				((TextView) this.findViewById(Integer.parseInt(key))).setText(value);
+	    			}
+	    			msg = "Data updated";
+    			}
     		}
     	}
     	Toast.makeText(this,msg,Toast.LENGTH_LONG).show();

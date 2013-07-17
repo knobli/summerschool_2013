@@ -1,5 +1,8 @@
 package ch.zhaw;
 
+import java.util.HashMap;
+import java.util.Map.Entry;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,12 +12,19 @@ import android.widget.EditText;
 
 public class EditActivity extends Activity {
 
-	private EditText name;
-	private EditText address;
-	private EditText state;
-	private EditText country;
-	private EditText phone;
-	private Button doneButton;
+	private Button saveButton; 
+
+	private Button cancelButton;
+
+	private EditText nameField;
+
+	private EditText addressField;
+
+	private EditText cityField;
+
+	private EditText stateField;
+
+	private EditText phoneField;
 	
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -22,24 +32,42 @@ public class EditActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit);
         
-        this.name = (EditText) this.findViewById(R.id.textView1);
-        this.address = (EditText) this.findViewById(R.id.textView1);
-        this.state = (EditText) this.findViewById(R.id.textView1);
-        this.country = (EditText) this.findViewById(R.id.textView1);
-        this.phone = (EditText) this.findViewById(R.id.textView1);
+        this.nameField = (EditText)this.findViewById(R.id.name);
+        this.addressField = (EditText)this.findViewById(R.id.address);
+        this.cityField = (EditText)this.findViewById(R.id.city);
+        this.stateField = (EditText)this.findViewById(R.id.state);
+        this.phoneField = (EditText)this.findViewById(R.id.phone);
         
-        this.doneButton = (Button) this.findViewById(R.id.editButton);
+        this.saveButton = (Button) this.findViewById(R.id.saveButton);
+        this.cancelButton = (Button) this.findViewById(R.id.cancelButton); 
         
-        this.doneButton.setOnClickListener(new View.OnClickListener() {
+        this.saveButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
+				HashMap<Integer, String> valueMap = new HashMap<Integer, String>();
+		        valueMap.put(R.id.name, nameField.getText().toString());
+		        valueMap.put(R.id.address, addressField.getText().toString());
+		        valueMap.put(R.id.city, cityField.getText().toString());
+		        valueMap.put(R.id.state, stateField.getText().toString());
+		        valueMap.put(R.id.phone, phoneField.getText().toString());
+		        
 				Intent intent = new Intent();
-				intent.putExtra("name", name.getText().toString());
+				for( Entry<Integer, String> value : valueMap.entrySet() ){
+					intent.putExtra(value.getKey().toString(), value.getValue());
+				}
 				setResult(Activity.RESULT_OK, intent);
-				finished();
+				finish();
 			}
-		})
+		});
+        
+        this.cancelButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
     }
 	
 }
