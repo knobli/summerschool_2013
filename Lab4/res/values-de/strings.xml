@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">Einstellungen</string>
+    
+    <string name="app_name">Ich</string>
+    <string name="name">Name</string>
+    <string name="address">Adresse</string>
+    <string name="city">Stadt</string>
+    <string name="state">Staat</string>
+    <string name="phone">Telefon</string>
+    
+    <string name="title_section1">Ich</string>
+    <string name="title_section2">In der Nähe</string>
+    <string name="title_section3">Karte</string>
+    
+    <string name="no_save_data">Keine Daten gespeichert.</string>
+    <plurals name="save_data">
+    	<item quantity="one">Neuer Eintrag gespeichert.</item>
+    	<item quantity="other">%1$s neue Einträge gespeichert.</item>
+	</plurals>    
+
+    <string name="cancelButton">Abbrechen</string>
+    <string name="saveButton">Speichern</string>   
+    <string name="editButton">Bearbeiten</string>
+</resources>

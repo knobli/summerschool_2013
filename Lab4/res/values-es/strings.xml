@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">Configuración</string>
+    
+    <string name="app_name">Yo</string>
+    <string name="name">Nombre</string>
+    <string name="address">Direccion</string>
+    <string name="city">Ciudad</string>
+    <string name="state">Departemento</string>
+    <string name="phone">Telefono</string>
+    
+    <string name="title_section1">Yo</string>
+    <string name="title_section2">Cerca</string>
+    <string name="title_section3">Mapa</string>    
+    
+    <string name="no_save_data">Save NO new input.</string>
+    <plurals name="save_data">
+    	<item quantity="one">Guardar tu nuevo introducir.</item>
+    	<item quantity="other">Guardar nuevo %1$s introducir</item>
+	</plurals>    
+
+    <string name="cancelButton">Cancelar</string>
+    <string name="saveButton">Guardar</string>   
+    <string name="editButton">Editar</string>
+</resources>
