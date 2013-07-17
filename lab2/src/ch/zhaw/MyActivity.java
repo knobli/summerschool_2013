@@ -2,6 +2,7 @@ package ch.zhaw;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,14 +38,16 @@ public class MyActivity extends Activity
     	if(requestCode == REQUEST_TEXT){
     		if(resultCode == Activity.RESULT_OK){
     			Bundle bundle = data.getExtras();
-    			if(bundle == null){
-    				msg = "An error appears!";
-    			} else {
+    			Resources res = getResources();
+    			if(bundle != null){
+    				int numberOfChanges = bundle.size();
 	    			for(String key : bundle.keySet()){
 	    				String value = bundle.getString(key);
 	    				((TextView) this.findViewById(Integer.parseInt(key))).setText(value);
 	    			}
-	    			msg = "Data updated";
+	    			msg = res.getQuantityString(R.plurals.save_data, numberOfChanges, numberOfChanges);
+    			} else {
+    				msg = res.getString(R.string.no_save_data);
     			}
     		}
     	}

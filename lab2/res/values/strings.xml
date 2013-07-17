@@ -17,6 +17,12 @@
    	<string name="cancelButton">Cancel</string>
     <string name="saveButton">Save</string>
     
+    <string name="no_save_data">Save NO new input.</string>
+    <plurals name="save_data">
+    	<item quantity="one">Save your new input.</item>
+    	<item quantity="other">Save new %1$s inputs</item>
+	</plurals>
+    
     <string name="val_name">Raffael Santschi</string>
     <string name="val_address">1 Campus Dr</string>
     <string name="val_city">Allendale</string>

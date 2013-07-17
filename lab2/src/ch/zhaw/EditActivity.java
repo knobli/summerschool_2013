@@ -54,7 +54,9 @@ public class EditActivity extends Activity {
 		        
 				Intent intent = new Intent(EditActivity.this,MyActivity.class);
 				for( Entry<Integer, String> value : valueMap.entrySet() ){
-					intent.putExtra(value.getKey().toString(), value.getValue());
+					if (!value.getValue().equals("")){
+						intent.putExtra(value.getKey().toString(), value.getValue());
+					}
 				}
 				setResult(Activity.RESULT_OK, intent);
 				finish();
