@@ -6,4 +6,10 @@
     <string name="city">City</string>
     <string name="state">State</string>
     <string name="phone">Phone</string>
+    
+    <string name="val_name">Raffael Santschi</string>
+    <string name="val_address">1 Campus Dr</string>
+    <string name="val_city">Allendale</string>
+    <string name="val_state">Michigan</string>
+    <string name="val_phone">iPhone</string>
 </resources>
