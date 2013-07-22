@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_settings">Configuración</string>
+    <string name="action_edit">Editar</string>
     
     <string name="app_name">Yo</string>
     <string name="name">Nombre</string>
@@ -13,7 +14,7 @@
     <string name="title_section2">Cerca</string>
     <string name="title_section3">Mapa</string>    
     
-    <string name="no_save_data">Save NO new input.</string>
+    <string name="no_save_data">Guardar NO introducir..</string>
     <plurals name="save_data">
     	<item quantity="one">Guardar tu nuevo introducir.</item>
     	<item quantity="other">Guardar nuevo %1$s introducir</item>

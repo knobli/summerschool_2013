@@ -3,22 +3,24 @@ package ch.zhaw.lab4;
 import java.util.Locale;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity implements
 		ActionBar.TabListener {
@@ -46,6 +48,7 @@ public class MainActivity extends FragmentActivity implements
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		    
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
@@ -90,22 +93,25 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	public void onTabUnselected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
+		
 	}
 
 	@Override
 	public void onTabReselected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
+		
 	}
 
 	/**
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
 	 * one of the sections/tabs/pages.
 	 */
-	public class SectionsPagerAdapter extends FragmentPagerAdapter {
+	public class SectionsPagerAdapter extends FragmentPagerAdapter implements OnPageChangeListener {
 
 		private static final int ME_FRAGMENT = 0;
 		private static final int NEARBY_FRAGMENT = 1;
 		private static final int MAP_FRAGMENT = 2;
+		private int currentSelectedFragmentPosition;
 
 		public SectionsPagerAdapter(FragmentManager fm) {
 			super(fm);
@@ -119,6 +125,10 @@ public class MainActivity extends FragmentActivity implements
 			Fragment fragment;
 			if (position == ME_FRAGMENT){
 				fragment = new MeFragment();
+			} else if (position == NEARBY_FRAGMENT){
+				fragment = new NearbyFragment();
+			} else if (position == MAP_FRAGMENT){
+				fragment = new MyMapFragment();
 			} else {
 				fragment = new DummySectionFragment();
 				Bundle args = new Bundle();
@@ -133,7 +143,16 @@ public class MainActivity extends FragmentActivity implements
 			// Show 3 total pages.
 			return 3;
 		}
-
+		
+		@Override
+		public void onPageSelected(int pos) {
+	        currentSelectedFragmentPosition = pos;
+	    }
+		
+	    public int getCurrentSelectedFragmentPosition() {
+	        return currentSelectedFragmentPosition;
+	    }
+		
 		@Override
 		public CharSequence getPageTitle(int position) {
 			Locale l = Locale.getDefault();
@@ -146,6 +165,18 @@ public class MainActivity extends FragmentActivity implements
 				return getString(R.string.title_section3).toUpperCase(l);
 			}
 			return null;
+		}
+
+		@Override
+		public void onPageScrollStateChanged(int arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onPageScrolled(int arg0, float arg1, int arg2) {
+			// TODO Auto-generated method stub
+			
 		}
 	}
 
@@ -189,10 +220,36 @@ public class MainActivity extends FragmentActivity implements
     		Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
     		startActivity(intent);
     		return true;
+    	} else if(item.getItemId() == R.id.action_edit){
+        		Intent intent = new Intent(MainActivity.this, EditActivity.class);
+        		startActivityForResult(intent, MeFragment.REQUEST_TEXT);
+        		return true;    		
     	} else {
     		return super.onMenuItemSelected(featureId, item);
     	}
     }
 	
-
+    @Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	super.onActivityResult(requestCode, resultCode, data);
+    	if(requestCode == MeFragment.REQUEST_TEXT && mSectionsPagerAdapter.getCurrentSelectedFragmentPosition() == 0){
+    		if(resultCode == Activity.RESULT_OK){
+    			String msg;
+    			Resources res = getResources();
+    			Bundle bundle = data.getExtras();
+    			if(bundle != null){
+    				int numberOfChanges = bundle.size();
+	    			for(String key : bundle.keySet()){
+	    				String value = bundle.getString(key);
+	    				((TextView) this.findViewById(Integer.parseInt(key))).setText(value);
+	    			}
+	    			//String text = String.format(res.getString(R.string.welcome_messages),username, mailCount);
+	    			msg = res.getQuantityString(R.plurals.save_data, numberOfChanges, numberOfChanges);
+    			} else {
+    				msg = res.getString(R.string.no_save_data);
+    			}
+    			Toast.makeText(this,msg,Toast.LENGTH_LONG).show();
+    		}
+    	}
+    }
 }

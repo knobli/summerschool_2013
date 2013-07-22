@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_settings">Einstellungen</string>
+    <string name="action_edit">Bearbeiten</string>
     
     <string name="app_name">Ich</string>
     <string name="name">Name</string>
